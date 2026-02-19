@@ -1,5 +1,5 @@
 name: "Setup PHP"
-description: "Custom PHP setup action"
+description: "Custom PHP Setup"
 
 inputs:
   php-version:
@@ -9,7 +9,11 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - run: sudo add-apt-repository ppa:ondrej/php -y
+      shell: bash
+
     - run: sudo apt update
       shell: bash
-    - run: sudo apt install -y php${{ inputs.php-version }}
+
+    - run: sudo apt install -y php${{ inputs.php-version }} php${{ inputs.php-version }}-cli php${{ inputs.php-version }}-mbstring php${{ inputs.php-version }}-xml php${{ inputs.php-version }}-curl php${{ inputs.php-version }}-mysql unzip
       shell: bash
