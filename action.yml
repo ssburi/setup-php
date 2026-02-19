@@ -1,0 +1,15 @@
+name: "Setup PHP"
+description: "Custom PHP setup action"
+
+inputs:
+  php-version:
+    description: "PHP version"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - run: sudo apt update
+      shell: bash
+    - run: sudo apt install -y php${{ inputs.php-version }}
+      shell: bash
